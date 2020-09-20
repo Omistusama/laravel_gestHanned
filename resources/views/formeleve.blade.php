@@ -41,6 +41,13 @@
             <option value="Pas etude">Pas d'Etude</option>
           </select>
         </div>
+        <div class="input-group mb-3">
+          <select class="browser-default custom-select" name="unchamp" size="1" id="test">
+            <option value = "">--Statut--</option>
+            <option value="Cantine">Present</option>
+            <option value="Panier">Absent</option>
+          </select>
+        </div>
         <div class="row">
           <!-- /.col -->
           <div class="col-4">
