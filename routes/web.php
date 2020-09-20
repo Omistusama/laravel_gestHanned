@@ -19,9 +19,12 @@ use Illuminate\Http\Request;
 //Route::get('/', function () {
 //    return view('myhome');
 //});
+Route::view('login', 'login');
+Auth::routes();
+
 Route::get('/', 'HomeController@index');
 Route::view('home', 'home');
-Route::view('login', 'login');
+
 Route::view('formcotis', 'formcotis');
 Route::view('formparent', 'formparent');
 
@@ -33,6 +36,7 @@ Route::get('fammodif/{id}', 'ParentFormController@update');
 Route::get('suppfam/{id}', 'ParentFormController@delete');
 Route::get('/search', 'ParentFormController@search');
 Route::post('/famille/getFamille/','ParentFormController@getFamille')->name('famille.getFamille');
+Auth::routes();
 
 Route::get('eleve', 'EleveForm@index')->name('bilaneleve');
 Route::get('createeleve', 'EleveForm@create')->name('formeleve');
@@ -62,7 +66,6 @@ Route::get('modifsouche/{id}', 'SoucheContoller@edit');
 Route::get('souchemodif/{id}', 'SoucheContoller@update');
 Route::get('suppsouche/{id}', 'SoucheContoller@delete');
 
-Auth::routes();
 
 Route::get('/logout', 'LogoutController@logout')->name('logout');
 

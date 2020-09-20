@@ -9,6 +9,11 @@ use DB;
 
 class ChequeContoller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $cheque = DB::table('familles')->join('cheque', 'familles.id', '=', 'cheque.id_parent')

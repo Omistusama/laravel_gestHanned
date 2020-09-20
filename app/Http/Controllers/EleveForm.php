@@ -11,6 +11,11 @@ use DB;
 
 class EleveForm extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $eleves = DB::table('eleve')->join('familles', 'familles.id', '=', 'eleve.id_parent')

@@ -9,6 +9,11 @@ use DB;
 
 class ParentFormController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $famille = DB::table('familles') ->paginate(15);

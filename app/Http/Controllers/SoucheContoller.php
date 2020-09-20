@@ -9,6 +9,10 @@ use DB;
 
 class SoucheContoller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $cheque = DB::table('souche')->join('lescotisations', 'lescotisations.idSouche', '=', 'souche.idSouche')

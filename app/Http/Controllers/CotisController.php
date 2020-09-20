@@ -11,6 +11,11 @@ use DB;
 
 class CotisController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $lesfamilles = DB::table('familles')->count('id');
