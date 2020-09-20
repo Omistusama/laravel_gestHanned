@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 //    return view('myhome');
 //});
 Route::view('login', 'login');
+//Securite
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
