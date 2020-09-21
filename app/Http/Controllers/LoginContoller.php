@@ -11,6 +11,12 @@ class LoginContoller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function authenticated(Request $request, $user)
+{
+    $user->update([
+        'last_login_at' => Carbon::now()->toDateTimeString(),
+    ]);
+}
     public function index()
     {
         //
