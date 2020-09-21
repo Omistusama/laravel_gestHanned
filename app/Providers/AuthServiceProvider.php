@@ -26,8 +26,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
         
         Gate::define('createeleve', function($user){
-            return $user->hasAnyRole(['admin', 'author']);
+            return $user->hasRole(['admin']);
         });
+        
 
         Gate::define('createcotis', function($user){
             return $user->hasAnyRole(['admin', 'author']);

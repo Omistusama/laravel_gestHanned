@@ -39,7 +39,10 @@
         </table>
         <div class="col-sm-6">
             <div class="pull-right">
-            <a class="btn btn-primary btn-success" href="{{ route('formeleve') }}">Ajouter un eleve</a>
+           
+            
+            <a class="btn btn-primary btn-success" href="{{ route('formeleve') }}"> jyyyj</a>
+          
             </div>
         </div>
     </div>

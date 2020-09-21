@@ -37,7 +37,6 @@ Route::get('fammodif/{id}', 'ParentFormController@update');
 Route::get('suppfam/{id}', 'ParentFormController@delete');
 Route::get('/search', 'ParentFormController@search');
 Route::post('/famille/getFamille/','ParentFormController@getFamille')->name('famille.getFamille');
-Auth::routes();
 
 Route::get('eleve', 'EleveForm@index')->name('bilaneleve');
 Route::get('createeleve', 'EleveForm@create')->name('formeleve');
@@ -73,5 +72,5 @@ Route::get('/logout', 'LogoutController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-    Route::resource('/users', 'UsersController', ['except' => ['show']]);
+    Route::resource('/users', 'UsersController');
 });

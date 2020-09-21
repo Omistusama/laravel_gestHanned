@@ -15,16 +15,7 @@
           {{ __('Logout') }}
         </a>
       </li>
-      <li>
-        <a class="nav-link" href="{{ route('admin.users.index') }}">
-          User Management
-        </a>
-      </li>
-      <li>
-        <a class="nav-link" href="{{ route('login') }}">
-          Login
-        </a>
-      </li>
+      
     </ul>
 
     
