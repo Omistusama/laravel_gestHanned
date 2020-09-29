@@ -8,6 +8,17 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Acceuil</h1>
+            <p>
+              @if (auth()->check())
+                  @if (auth()->user()->isAdministrator())
+                    Connécté(e) en tant qu'Admin.
+                  @elseif (auth()->user()->isAuthor())
+                    Connécté(e) en tant qu'Auteur.
+                  @else
+                    Connécté(e) en tant qu'Utisiateur Standard.
+                  @endif
+              @endif
+            </p>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

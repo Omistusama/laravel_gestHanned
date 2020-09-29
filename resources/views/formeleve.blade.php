@@ -24,6 +24,14 @@
           </div>
         </div>
         <div class="input-group mb-3">
+          <input type="text" name="date_naiss" class="form-control" placeholder="Date de naissance de l'élève format JJ/MM/AAAA">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
             <select class="browser-default custom-select" name="id_classe" size="1" id="test">
                 <option value = "">--Veuillez choisir une classe--</option>
                 @foreach($classe as $uneClasse)

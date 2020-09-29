@@ -14,6 +14,7 @@
                 <p> {{ $message }} </p>
             </div> 
         @endif
+        
         <table class="table table-bordered">
             <tr>
                 <th width=150px>Nom de famille</th>
@@ -30,8 +31,23 @@
                 <td>{{$unEleve->type_cotisation}}</td>
                 <td>
                     <!-- <a class="btn btn-info" href="">Détails</a> -->
-                    <a class="nav-icon fas fa-edit" href="{{ URL::to('modifele/'.$unEleve->id) }}"></a>
-                    <a class="fas fa-trash-alt" href="{{ URL::to('suppele/'.$unEleve->id) }}" onclick="return confirm('Êtes-vous sûr(e) ?')"></a>
+                    @if (auth()->check())
+                      @if (auth()->user()->isAdministrator())
+                      <a class="nav-icon fas fa-edit" href="{{ URL::to('modifele/'.$unEleve->id) }}"></a>
+                      @elseif (auth()->user()->isAuthor())
+                      <a class="nav-icon fas fa-edit" href="{{ URL::to('modifele/'.$unEleve->id) }}"></a>
+                      @else
+                        
+                      @endif
+                    @endif
+                    
+                    @if (auth()->check())
+                      @if (auth()->user()->isAdministrator())
+                      <a class="fas fa-trash-alt" href="{{ URL::to('suppele/'.$unEleve->id) }}" onclick="return confirm('Êtes-vous sûr(e) ?')"></a>
+                      @elseif (auth()->user()->isAuthor())
+                      @else
+                      @endif
+                    @endif
                 </td>
             </tr>
             
@@ -39,9 +55,14 @@
         </table>
         <div class="col-sm-6">
             <div class="pull-right">
-           
-            
-            <a class="btn btn-primary btn-success" href="{{ route('formeleve') }}"> jyyyj</a>
+            @if (auth()->check())
+              @if (auth()->user()->isAdministrator())
+              <a class="btn btn-primary btn-success" href="{{ route('formeleve') }}">Ajouter un(e) eleve</a>
+              @elseif (auth()->user()->isAuthor())
+              <a class="btn btn-primary btn-success" href="{{ route('formeleve') }}">Ajouter un(e) eleve</a>
+              @else
+              @endif
+            @endif
           
             </div>
         </div>

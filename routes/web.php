@@ -66,6 +66,9 @@ Route::get('modifsouche/{id}', 'SoucheContoller@edit');
 Route::get('souchemodif/{id}', 'SoucheContoller@update');
 Route::get('suppsouche/{id}', 'SoucheContoller@delete');
 
+Route::get('elevecertif', 'CertificatController@index')->name('bilancertificatscolaire');
+Route::get('/eleve/pdf','CertificatController@createPDF');
+Route::get('/oneelve/pdf/{id}','CertificatController@createPDFforOneUser');
 
 Route::get('/logout', 'LogoutController@logout')->name('logout');
 

@@ -14,55 +14,7 @@
     }
 </style>
     <div class="row">
-        <form action="/search" method="get" role="search">
-            {{ csrf_field() }}
-            <div class="input-group">
-                <input type="search" class="form-control" name="search"
-                    placeholder="Recherche de nom de famille"> <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">
-                        <span class="fas fa-search"></span>
-                    </button>
-                </span>
-            </div>
-        </form>
-        <!-- <input type="text" id='employee_search'>
-
-    For displaying selected option value from autocomplete suggestion 
-    <input type="text" id='employeeid' readonly>
-
-     Script 
-    <script type="text/javascript">
-
-    // CSRF Token
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    $(document).ready(function(){
-
-      $( "#employee_search" ).autocomplete({
-        source: function( request, response ) {
-          // Fetch data
-          $.ajax({
-            url:"{{route('famille.getFamille')}}",
-            type: 'post',
-            dataType: "json",
-            data: {
-               _token: CSRF_TOKEN,
-               search: request.term
-            },
-            success: function( data ) {
-               response( data );
-            }
-          });
-        },
-        select: function (event, ui) {
-           // Set selection
-           $('#employee_search').val(ui.item.label); // display the selected text
-           $('#employeeid').val(ui.item.value); // save selected id to input
-           return false;
-        }
-      });
-
-    });
-    </script> -->
+        
         
         @if($message = Session::get('success'))
             <div class="alert alert-success">
@@ -87,22 +39,41 @@
                 <td>{{$uneFamille->numero_tel}}</td>
                 <td>
                     <!-- <a class="btn btn-info" href="">Détails</a> -->
-                    <a class="nav-icon fas fa-edit" href="{{ URL::to('modiffam/'.$uneFamille->id) }}"></a>
-                    <a class="fas fa-trash-alt" href="{{ URL::to('suppfam/'.$uneFamille->id) }}" onclick="return confirm('Êtes-vous sûr(e) ?')"></a>
+                    @if (auth()->check())
+                      @if (auth()->user()->isAdministrator())
+                      <a class="nav-icon fas fa-edit" href="{{ URL::to('modiffam/'.$uneFamille->id) }}"></a>
+                      @elseif (auth()->user()->isAuthor())
+                      <a class="nav-icon fas fa-edit" href="{{ URL::to('modiffam/'.$uneFamille->id) }}"></a>
+                      @else
+                        
+                      @endif
+                    @endif
+                    
+                    @if (auth()->check())
+                      @if (auth()->user()->isAdministrator())
+                      <a class="fas fa-trash-alt" href="{{ URL::to('suppfam/'.$uneFamille->id) }}" onclick="return confirm('Êtes-vous sûr(e) ?')"></a>
+                      @elseif (auth()->user()->isAuthor())
+                      @else
+                      @endif
+                    @endif
                 </td>
             </tr>
             @endforeach
         </table>
         <div class="col-sm-6">
             <div class="pull-right">
-            <a class="btn btn-primary btn-success" href="{{ route('formparent') }}">Ajouter une famille</a>
+            @if (auth()->check())
+              @if (auth()->user()->isAdministrator())
+              <a class="btn btn-primary btn-success" href="{{ route('formparent') }}">Ajouter une famille</a>
+              @elseif (auth()->user()->isAuthor())
+              <a class="btn btn-primary btn-success" href="{{ route('formparent') }}">Ajouter une famille</a>
+              @else
+              @endif
+            @endif
+            
             </div>
            
         </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                {{$famille-> links()}}
-            </div>
-        </div>
+        
     </div>
 @endsection
